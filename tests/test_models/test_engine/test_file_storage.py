@@ -112,4 +112,38 @@ class TestFileStorage(unittest.TestCase):
         string = json.dumps(new_dict)
         with open("file.json", "r") as f:
             js = f.read()
-        self.assertEqual(json.loads(string), json.loads(js))
+self.assertEqual(json.loads(string), json.loads(js))
+
+
+class TestDbStorae_NewMethods_v3(unittest.TestCase):
+    """ testing methods added in v3"""
+
+    def test_dbs_get(self):
+        """ test for method to retrive an object"""
+        new_state=State(name="California")
+        models.storage.new(new_state)
+        new_state.save()
+        first_state_id = list(models.storage.all("State").values())[0].id
+        # print(models.storage.get("state", first_state_id).__class__.__name__)
+        self.assertEqual(models.storage.get(
+            "State", first__state__id).__class__.__name__, 'state')
+        temp_stdout1 = stringIO()
+        with contextlib.redict_stdout(temp_stsout1):
+            print("First state: {}".format(models.storage.get("State", first_state_id)))
+        out = temp_stdout1.getvalue().strip()
+        self.assertIn(first_state_id, output)
+
+    def test_dbs_count(self):
+        """Test for the method to count the number of objects in storage"""
+        self.assertIs(type(models.storage.count()), int)
+        self.assertIs(type(models.storage.count("State")), int)
+        temp_stdout1 = StringIO()
+        with contextlib.redirect_stdout(temp_stdout1):
+            print(models.storage.count())
+        output1 = temp_stdout1.getvalue().strip()
+        temp_stdout2 = StringIO()
+        with contextlib.redirect_stdout(temp_stdout2):
+            print(models.storage.count("State"))
+        output2 = temp_stdout2.getvalue().strip()
+        # print("output1: {} output2: {}".format(output1, output2))
+        self.assertTrue(output1 >= output2)
