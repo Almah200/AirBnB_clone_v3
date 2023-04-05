@@ -15,16 +15,16 @@ app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 
-@app.errorhandler(404)
-def invalid_route(self):
-    """ invalide route module """
-    return (jsonify({"error": "Not found"}), 404)
-
-
 @app.teardown_appcontext
-def storage_close(issue):
+def teardown_session(exception):
     """calls storage.close()"""
     storage.close()
+
+
+@app.errorhandler(404)
+def invalid_route(error):
+    """ invalide route module """
+    return make_response(jsonify({"error": "Not found"}), 404)
 
 
 if __name__ == "__main__":
