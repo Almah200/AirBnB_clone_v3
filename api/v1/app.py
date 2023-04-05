@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ imported modules """
+
 from flask import Flask, Blueprint, abort
 from flask import make_response
 from flask import render_template, jsonify
@@ -15,7 +16,7 @@ cors = CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 
 @app.errorhandler(404)
-def invalid_route(e):
+def invalid_route(self):
     """ invalide route module """
     return (jsonify({"error": "Not found"}), 404)
 
