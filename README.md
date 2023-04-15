@@ -156,6 +156,8 @@ No known bugs at this time.
 ## Authors
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
 Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
+Almarat Arnu Ngutulu [Github (https://github.com/Almah200)]
+## i have contributed as required by ALU airbnb clone project v4
 
 Second part of Airbnb: Joann Vuong
 ## License
